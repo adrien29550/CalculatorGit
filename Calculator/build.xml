@@ -1,46 +1,71 @@
 <?xml version ="1.0"?>
 <project name="Sandbox" default="clean">
-	
-	<path  id="classpath">
-		<fileset dir="libs" includes="**/*.jar"></fileset>
-	</path>
-	
+
+    <path  id="classpath">
+        <fileset dir="libs" includes="**/*.jar"></fileset>
+    </path>
+
+    <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" 
+        classpath="extra/pmd-4.2.6.jar"/>
+
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties"
+         classpath="extra/checkstyle-6.12.1-all.jar"/>
+
     <target name="clean" description="plop">
         <delete dir="build">
         </delete>
     </target>
 
-	 <target name="compile">
-	 <mkdir dir="build/classes"/>
-	 	<javac srcdir="src" destdir="build/classes">
-	 	<classpath>
-	 	<path refid="classpath"></path>
-	 	</classpath>
-	 	</javac>
-	 </target>
-	
-	<target name="doc">
-		<mkdir dir="build/doc"/>
-		<javadoc
-			destdir="build/doc"
-			author="true"
-			version="true"
-			use="true"
-			windowtitle="API de Calc project">
-			
-			<packageset dir="src" defaultexcludes="yes">
-				<include name="com/**"/>
-				<exclude name="com/tactfactory/app/test/**"/>
-			</packageset>
-		</javadoc>
-	</target>
-	
-	<target name="jar" depends="compile">
-	<mkdir dir="build/jar"/>
-		<jar destfile="build/jar/helloWorld.jar" basedir="build/classes">
-		<manifest >
-		<attribute name="Main-Class" value="oata.HelloWorld"/>
-		</manifest>
-		</jar>
-	</target>
+    <target name="compile">
+    <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+        <classpath>
+        <path refid="classpath"></path>
+        </classpath>
+        </javac>
+     </target>
+
+    <target name="doc">
+        <mkdir dir="build/doc"/>
+        <javadoc
+            destdir="build/doc"
+            author="true"
+            version="true"
+            use="true"
+            windowtitle="API de Calc project">
+
+            <packageset dir="src" defaultexcludes="yes">
+                <include name="com/**"/>
+                <exclude name="com/tactfactory/app/test/**"/>
+            </packageset>
+        </javadoc>
+    </target>
+
+    <target name="jar" depends="compile">
+    <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/helloWorld.jar" basedir="build/classes">
+            <manifest >
+                <attribute name="Main-Class" value="oata.HelloWorld"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="quality">
+           <mkdir dir="build/report"/>
+          <checkstyle config="extra/google_checks.xml">
+            <fileset dir="src" includes="**/*.java"/>
+          </checkstyle>
+    </target>
+
+    <target name="pmd">
+        <pmd rulesetfiles="basic">
+            <fileset dir="src" includes="**/*.java"/>
+            <formatter type="html" toFile="pmd_report.html" toConsole="true"/>
+        </pmd>
+    </target>
+
+    <target name="findBugs">
+
+    </target>
+
 </project>

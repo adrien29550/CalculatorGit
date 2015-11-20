@@ -1,84 +1,82 @@
 package com.iia.app.test;
 
-
+import com.iia.app.OperandClass;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.iia.app.OperandClass;
-import junit.framework.TestCase;
+
 
 /**
- * 
- * @author Maxime Millot <m.millot@iia-laval.fr
+ * Author/version/...
+ * @author Adrien tlt
  * @version 1.0.0
  */
 
 public class OperandClassTest extends TestCase {
 
-	/**
-	 * test class of SampleTest class.
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
+    /** Test class of SampleTest class.
+     */
+    @Before
+    public void setUp() throws Exception {
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
-	
-	/**
-	 * Test addition
-	 */
-	@Test
-	public  void testAdd() {
-		
-		int a = 0;
-		int b = 2;
-		
-		int result = a + b;
-		
-		assertEquals(result, OperandClass.add(a, b));
-	}
-	
-	/**
-	 * Test subtraction
-	 */
-	@Test
-	public  void testSubb() {
-		
-		int a = 0;
-		int b = 2;
-		
-		int result = a - b;
-		
-		assertEquals(result, OperandClass.sub(a, b));
-	}
-	
-	/**
-	 * Test subtraction
-	 */
-	@Test
-	public  void testMulti() {
-		
-		int a = 0;
-		int b = 2;
-		
-		int result = a * b;
-		
-		assertEquals(result, OperandClass.mul(a, b));
-	}
-	
-	@Test
-	public  void testDiv() {
-		
-		int a = 0;
-		int b = 2;
-		
-		int result = a / b;
-		
-		assertEquals(result, OperandClass.div(a, b));
-	}
+    @After
+    public void tearDown() throws Exception {
+    }
+    
+    /** Test addition.
+     */
+    @Test
+    public  void testAdd() {
+
+        int val1 = 0;
+        int val2 = 2;
+        
+        int result = val1 + val2;
+
+        assertEquals(result, OperandClass.add(val1, val2));
+    }
+
+    /** Test subtraction.
+     */
+    @Test
+    public  void testSubb() {
+
+        int val1 = 0;
+        int val2 = 2;
+
+        int result = val1 - val2;
+
+        assertEquals(result, OperandClass.sub(val1, val2));
+    }
+
+    /** Test subtraction.
+     */
+    @Test
+    public  void testMulti() {
+
+        int val1 = 0;
+        int val2 = 2;
+
+        int result = val1 * val2;
+
+        assertEquals(result, OperandClass.mul(val1, val2));
+    }
+
+    /** Test division.
+     */
+    @Test
+    public  void testDiv() {
+
+        int val1 = 0;
+        int val2 = 2;
+
+        int result = val1 / val2;
+
+        assertEquals(result, OperandClass.div(val1, val2));
+    }
 
 }
